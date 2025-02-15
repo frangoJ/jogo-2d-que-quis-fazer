@@ -257,10 +257,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1018365413}
   - component: {fileID: 1018365415}
-  - component: {fileID: 1018365418}
   - component: {fileID: 1018365414}
   - component: {fileID: 1018365416}
   - component: {fileID: 1018365417}
+  - component: {fileID: 1018365418}
   m_Layer: 0
   m_Name: skin
   m_TagString: Player
@@ -437,16 +437,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1018365412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02c2fd8436bfad549aff9189a6ab5a9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a18bf069e2a85e429eff0cff8736803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 6
-  focaPulo: 5
-  noChao: 0
-  anime: {fileID: 0}
-  pulosRestantes: 1
-  _rigidbody2D: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  speed: 6
+  addJumps: 1
+  isGrounded: 0
+  jumpForce: 5
 --- !u!1 &1400653166
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +458,7 @@ GameObject:
   - component: {fileID: 1400653169}
   m_Layer: 0
   m_Name: Square
-  m_TagString: chao
+  m_TagString: Chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

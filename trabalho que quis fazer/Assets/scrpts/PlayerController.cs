@@ -1,80 +1,77 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //variaveis privadas
+    // Variáveis privadas
     private Rigidbody2D rb;
     private float moveX;
-    
-    //variaveis publicas
+
+    // Variáveis públicas
     public float speed;
     public int addJumps;
     public bool isGrounded;
     public float jumpForce;
-    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    
     void Update()
     {
         moveX = Input.GetAxisRaw("Horizontal");
+        if (Input.GetButtonDown("Jump") && (isGrounded || addJumps > 0))
+        {
+            Jump();
+            if (!isGrounded)
+            {
+                addJumps--;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        moveX();
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
-
-        if (isGrounded)
-        {
-            addJumps = 2;
-            if (Input.GetButtonDown("jump"))
-            {
-                jump();
-            }
-        }
-    }
-    else
-
-    {
-        if (Input.GetMouseButtonDown("jump") && addJumps > 0)
-        {
-            addJumps--;
-            jump();
-        }
+        Move();
     }
 
     void Move()
     {
-        rb.velocity = new Vector2(moveX * speed, rb.velocity.y);    
+        rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
+
+        if(moveX > 0)
+        {
+            transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        }
+
+        if(moveX < 0 )
+        {
+            transform.eulerAngles = new Vector3(0f,180f,0f);
+        }
     }
 
-    void jump()
+    void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Chao"))
         {
             isGrounded = true;
+            addJumps = 1;
         }
     }
 
-    void OnCollisionExit2D(Collision2D other)
+    void OnCollisionExit2D(Collision2D collision)
     {
-        if (Collision.gameObject.tag == "ground")
+        if (collision.gameObject.CompareTag("Chao"))
         {
-            isGrounded = false
+            isGrounded = false;
         }
     }
 }
