@@ -33,8 +33,6 @@ public class PlayerController : MonoBehaviour
                 addJumps--;
             }
         }
-
-        
     }
 
     void FixedUpdate()
@@ -71,9 +69,9 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetButtonDown("Fire1")) 
+        if (Input.GetButtonDown("Fire1"))
         {
-                anim.Play("attack", -1);
+            anim.Play("attack", -1);
         }
     }
 
@@ -93,5 +91,12 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    // Função chamada pelo Animation Event
+    public void SkinChange()
+    {
+        Debug.Log("Animation Event SkinChange chamado!");
+        // Aqui você pode adicionar qualquer lógica necessária, como trocar a textura do jogador
     }
 }
