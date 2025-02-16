@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Variáveis privadas
     private Rigidbody2D rb;
     private float moveX;
+    private Animator anim;
 
     // Variáveis públicas
     public float speed;
@@ -18,11 +18,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         moveX = Input.GetAxisRaw("Horizontal");
+
         if (Input.GetButtonDown("Jump") && (isGrounded || addJumps > 0))
         {
             Jump();
@@ -31,31 +33,48 @@ public class PlayerController : MonoBehaviour
                 addJumps--;
             }
         }
+
+        
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         Move();
+        Attack();
     }
 
     void Move()
     {
         rb.velocity = new Vector2(moveX * speed, rb.velocity.y);
 
-        if(moveX > 0)
+        if (moveX > 0) // Lado direito
         {
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            anim.SetBool("isRun", true);
         }
-
-        if(moveX < 0 )
+        else if (moveX < 0) // Lado esquerdo
         {
-            transform.eulerAngles = new Vector3(0f,180f,0f);
+            transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            anim.SetBool("isRun", true);
+        }
+        else
+        {
+            anim.SetBool("isRun", false);
         }
     }
 
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        anim.SetBool("isJump", true);
+    }
+
+    void Attack()
+    {
+        if (Input.GetButtonDown("Fire1")) 
+        {
+                anim.Play("attack", -1);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -64,6 +83,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             addJumps = 1;
+            anim.SetBool("isJump", false);
         }
     }
 
