@@ -1,15 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Variáveis privadas
+    // Variï¿½veis privadas
     private Rigidbody2D rb;
     private float moveX;
     private Animator anim;
 
-    // Variáveis públicas
+    // Variï¿½veis pï¿½blicas
     public float speed;
     public int addJumps;
     public bool isGrounded;
@@ -93,10 +93,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Função chamada pelo Animation Event
+    // Funï¿½ï¿½o chamada pelo Animation Event
     public void SkinChange()
     {
         Debug.Log("Animation Event SkinChange chamado!");
-        // Aqui você pode adicionar qualquer lógica necessária, como trocar a textura do jogador
+        // Aqui vocï¿½ pode adicionar qualquer lï¿½gica necessï¿½ria, como trocar a textura do jogador
     }
 }
