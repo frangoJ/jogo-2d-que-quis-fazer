@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public int addJumps;
     public bool isGrounded;
     public float jumpForce;
-
+    public int vida;
+    public TextMeshPro textVida;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
