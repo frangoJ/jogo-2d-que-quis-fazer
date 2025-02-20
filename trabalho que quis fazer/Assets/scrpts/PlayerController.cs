@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public float jumpForce;
     public int vida;
-    public TextMeshPro textVida;
+    public TextMeshProUGUI textVida;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -94,11 +94,9 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
-
-    // Fun��o chamada pelo Animation Event
     public void SkinChange()
     {
         Debug.Log("Animation Event SkinChange chamado!");
-        // Aqui voc� pode adicionar qualquer l�gica necess�ria, como trocar a textura do jogador
+       
     }
 }
