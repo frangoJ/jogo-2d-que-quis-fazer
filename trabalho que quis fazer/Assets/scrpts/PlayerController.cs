@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
                 addJumps--;
             }
         }
+        
+        textVida.text = vida.ToString();
     }
 
     void FixedUpdate()
